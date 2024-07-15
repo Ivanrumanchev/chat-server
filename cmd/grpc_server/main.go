@@ -25,34 +25,6 @@ type server struct {
 	desc.UnimplementedChatV1Server
 }
 
-// Create
-func (s *server) Create(ctx context.Context, req *desc.CreateRequest) (*desc.CreateResponse, error) {
-	log.Printf("ctx: %s", ctx)
-	log.Printf("Create Usernames: %s", req.GetUsernames())
-
-	return &desc.CreateResponse{
-		Id: generateChatID(),
-	}, nil
-}
-
-// Delete
-func (s *server) Delete(ctx context.Context, req *desc.DeleteRequest) (*emptypb.Empty, error) {
-	log.Printf("ctx: %s", ctx)
-	log.Printf("Delete Chat id: %d", req.GetId())
-
-	return &emptypb.Empty{}, nil
-}
-
-// SendMessage
-func (s *server) SendMessage(ctx context.Context, req *desc.SendMessageRequest) (*emptypb.Empty, error) {
-	log.Printf("ctx: %s", ctx)
-	log.Printf("SendMessage From: %s", req.GetFrom())
-	log.Printf("SendMessage Text: %s", req.GetText())
-	log.Printf("SendMessage Timestamp: %s", req.GetTimestamp())
-
-	return &emptypb.Empty{}, nil
-}
-
 func main() {
 	lis, err := net.Listen("tcp", fmt.Sprintf(":%d", grpcPort))
 	if err != nil {
@@ -68,4 +40,30 @@ func main() {
 	if err = s.Serve(lis); err != nil {
 		log.Fatalf("failed to serve: %v", err)
 	}
+}
+
+// Create
+func (s *server) Create(_ context.Context, req *desc.CreateRequest) (*desc.CreateResponse, error) {
+	log.Printf("Create UserIds: %s", req.GetUserIds())
+	log.Printf("Create Name: %s", req.GetName())
+
+	return &desc.CreateResponse{
+		Id: generateChatID(),
+	}, nil
+}
+
+// Delete
+func (s *server) Delete(_ context.Context, req *desc.DeleteRequest) (*emptypb.Empty, error) {
+	log.Printf("Delete Chat id: %d", req.GetId())
+
+	return &emptypb.Empty{}, nil
+}
+
+// SendMessage
+func (s *server) SendMessage(_ context.Context, req *desc.SendMessageRequest) (*emptypb.Empty, error) {
+	log.Printf("SendMessage From: %s", req.GetFrom())
+	log.Printf("SendMessage Text: %s", req.GetText())
+	log.Printf("SendMessage Timestamp: %s", req.GetTimestamp())
+
+	return &emptypb.Empty{}, nil
 }

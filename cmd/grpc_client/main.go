@@ -21,7 +21,7 @@ const (
 	name    = "room3"
 )
 
-var userIds = []string{"10", "11"}
+var userIDs = []string{"10", "11"}
 var timestamp = timestamppb.New(time.Now())
 
 func closeConn(conn *grpc.ClientConn) {
@@ -42,7 +42,7 @@ func main() {
 	ctx, cancel := context.WithTimeout(context.Background(), time.Second)
 	defer cancel()
 
-	createResponse, err := c.Create(ctx, &desc.CreateRequest{UserIds: userIds, Name: name})
+	createResponse, err := c.Create(ctx, &desc.CreateRequest{UserIDs: userIDs, Name: name})
 	if err != nil {
 		log.Fatalf("failed to create chat by id: %v", err)
 	}

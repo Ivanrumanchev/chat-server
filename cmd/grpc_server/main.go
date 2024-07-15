@@ -44,7 +44,7 @@ func main() {
 
 // Create
 func (s *server) Create(_ context.Context, req *desc.CreateRequest) (*desc.CreateResponse, error) {
-	log.Printf("Create UserIds: %s", req.GetUserIds())
+	log.Printf("Create UserIDs: %s", req.GetUserIDs())
 	log.Printf("Create Name: %s", req.GetName())
 
 	return &desc.CreateResponse{

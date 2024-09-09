@@ -19,7 +19,7 @@ func generateChatID() int64 {
 	return t
 }
 
-const grpcPort = 50051
+const grpcPort = 50151
 
 type server struct {
 	desc.UnimplementedChatV1Server

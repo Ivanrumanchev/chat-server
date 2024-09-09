@@ -14,7 +14,7 @@ import (
 )
 
 const (
-	address = "localhost:50051"
+	address = "localhost:50151"
 	chatID  = int64(3)
 	from    = "10"
 	text    = "text"
